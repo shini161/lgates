@@ -1,0 +1,20 @@
+{
+  "name": "lgates",
+  "version": "1.0.0",
+  "description": "logic gates support library/package with expression",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shini161/lgates.git"
+  },
+  "author": "shini161",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/shini161/lgates/issues"
+  },
+  "homepage": "https://github.com/shini161/lgates#readme",
+  "devDependencies": {
+    "typescript": "^4.8.4",
+    "tslib": "^2.4.0"
+  }
+}
