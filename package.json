@@ -1,7 +1,7 @@
 {
   "name": "lgates",
   "version": "1.0.0",
-  "description": "logic gates support library/package with expression",
+  "description": "logic gates + expressions support library/package",
   "main": "src/index.ts",
   "repository": {
     "type": "git",
