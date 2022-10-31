@@ -42,7 +42,9 @@ export {
   everyCase,
 };
 
-export default {
+const lg = {
   gate,
   exp,
 };
+
+export default lg
