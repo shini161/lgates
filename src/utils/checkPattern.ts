@@ -7,6 +7,10 @@ export default (pattern: string, variables: VariableValues): string => {
     .replace(/\(\)/g, "")
     .replace(/[{[]/g, "(")
     .replace(/[}\]]/g, ")")
+    .replace(/\)!/g, ")*!")
+    .replace(/\*+/g, "*")
+    .replace(/-+/g, "-")
+    .replace(/!+/, "!")
     .toLowerCase();
 
   const letters = "abcdefghijklmnopqrstuvwxyz";
