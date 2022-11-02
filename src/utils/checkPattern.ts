@@ -24,20 +24,14 @@ export default (pattern: string, variables: VariableValues): string => {
 
   const binaryNumbers = [0, 1];
 
-  // check for invalid pattern
-  // - invalid char
   if (pattern.split("").some((item) => !validChars.includes(item)))
     throw new Error("Invalid Pattern!");
-  // - invalid end/start
   if (pattern.match(/^[*+]|[*+!]$/)) throw new Error("Invalid Pattern");
-  // - unclosed brackets
   if (openBracketCount !== closeBracketCount)
     throw new Error("Invalid Pattern");
 
-  // replace )( with )*(
   pattern = pattern.replace(/\)\(/g, ")*(");
 
-  // replace each letter with value
   pattern.split("").forEach((item) => {
     if (letters.split("").includes(item)) {
       let value = variables?.[item] ? variables?.[item] : 0;
@@ -56,7 +50,6 @@ export default (pattern: string, variables: VariableValues): string => {
   }
   pattern = splittedArray.join("");
 
-  // add *
   pattern = pattern
     .replace(/\)0/g, ")*0")
     .replace(/0\(/g, "0*(")
