@@ -10,21 +10,21 @@ import singleCase from "./exp/singleCase";
 import everyCase from "./exp/everyCase";
 
 const gate = {
-  and: and,
-  buffer: buffer,
-  nand: nand,
-  nor: nor,
-  not: not,
-  or: or,
-  xnor: xnor,
-  xor: xor,
-  singleCase: singleCase,
-  everyCase: everyCase,
+  and,
+  buffer,
+  nand,
+  nor,
+  not,
+  or,
+  xnor,
+  xor,
+  singleCase,
+  everyCase,
 };
 
 const exp = {
-  singleCase: singleCase,
-  everyCase: everyCase,
+  singleCase,
+  everyCase,
 };
 
 export {
