@@ -2,6 +2,12 @@ import {BinaryNumber, EveryCase, EveryCaseReturnData, VariableValues} from "../.
 import checkPattern from "../utils/checkPattern";
 import limit from "../utils/limit";
 
+/**
+ *
+ * @param pattern
+ * the expression that will be evaluated
+ * @return EveryCase
+ */
 export default (pattern: string) : EveryCase => {
     pattern = pattern.toLowerCase();
 
