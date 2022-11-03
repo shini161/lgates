@@ -1,6 +1,7 @@
 import {BinaryNumber, EveryCase, EveryCaseReturnData, VariableValues} from "../../typings";
 import checkPattern from "../utils/checkPattern";
 import limit from "../utils/limit";
+import vm from "../utils/vm";
 
 /**
  *
@@ -46,7 +47,7 @@ export default (pattern: string) : EveryCase => {
 
         let expression = checkPattern(pattern, item);
 
-        res.push(limit(eval(expression)));
+        res.push(limit(vm.run(expression)));
         exp.push(expression);
     })
 

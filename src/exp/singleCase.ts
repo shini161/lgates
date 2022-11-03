@@ -1,6 +1,7 @@
 import { SingleCase, VariableValues } from "../../typings";
 import limit from "../utils/limit";
 import checkPattern from "../utils/checkPattern";
+import vm from "../utils/vm";
 
 /**
  *
@@ -15,6 +16,6 @@ export default (pattern: string, variables?: VariableValues): SingleCase => {
 
   return {
     exp: pattern,
-    res: limit(eval(pattern)),
+    res: limit(vm.run(pattern)),
   };
 };
