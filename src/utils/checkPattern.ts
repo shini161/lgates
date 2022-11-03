@@ -34,7 +34,7 @@ export default (pattern: string, variables: VariableValues): string => {
 
   pattern.split("").forEach((item) => {
     if (letters.split("").includes(item)) {
-      let value = variables?.[item] ? variables?.[item] : 0;
+      let value = variables?.[item] ? +variables?.[item] : 0;
       let regex = new RegExp(item, "g");
       pattern = pattern.replace(regex, String(value));
     }
