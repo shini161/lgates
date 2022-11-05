@@ -4,9 +4,9 @@
       "ESNext",
       "dom"
     ],
-    "module": "commonjs",
+    "module": "CommonJS",
     "moduleResolution": "node",
-    "target": "ESNext",
+    "target": "ES2015",
     "outDir": "dist",
     "sourceMap": false,
     "esModuleInterop": true,
@@ -16,7 +16,10 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "resolveJsonModule": true,
-    "importHelpers": true
+    "importHelpers": true,
+    "declaration": true,
+    "declarationMap": true,
+    "noImplicitAny": true
   },
   "include": ["src"],
   "exclude": ["node_modules", "**/*.spec.ts"]
