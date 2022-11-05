@@ -8,11 +8,9 @@ export default (pattern: string): string => {
 
     for(let i = 0; i < afterNegate.length; i++) {
         repArr.push(afterNegate[i]);
-        if(afterNegate[i] === "(") counter += 1;
-        if(afterNegate[i] === ")") {
-            if(counter === 0) break;
-            counter -= 1;
-        }
+        if(afterNegate[i] === "(") counter++;
+        if(afterNegate[i] === ")") counter--;
+        if(!counter) break;
     }
 
     let rep = repArr.join("");
