@@ -47,4 +47,4 @@ const lg = {
   exp,
 };
 
-export default lg
+export default lg;
