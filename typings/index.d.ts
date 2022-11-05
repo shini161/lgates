@@ -4,23 +4,28 @@ export type BoolBinary = BinaryNumber | boolean;
 
 export type VariableValues = { [key: string]: BoolBinary };
 
-export type EveryCaseReturnData = { [key: string]: BinaryNumber; res: BinaryNumber }
+export type EveryCaseReturnData = {
+  [key: string]: BinaryNumber;
+  res: BinaryNumber;
+};
 
 export interface SingleCase {
-    exp: string;
-    res: BinaryNumber
+  exp: string;
+  res: BinaryNumber;
 }
 
 export interface EveryCase {
-    exp: string[];
-    res: BinaryNumber[];
-    data: EveryCaseReturnData[]
+  exp: string[];
+  res: BinaryNumber[];
+  data: EveryCaseReturnData[];
 }
 
-/*
 declare function everyCase(pattern: string): EveryCase;
 
-declare function singleCase(pattern: string, variables?: VariableValues): SingleCase;
+declare function singleCase(
+  pattern: string,
+  variables?: VariableValues
+): SingleCase;
 
 declare function and(...args: BoolBinary[]): BinaryNumber;
 
@@ -38,7 +43,9 @@ declare function xnor(...args: BoolBinary[]): BinaryNumber;
 
 declare function xor(...args: BoolBinary[]): BinaryNumber;
 
-declare function checkPattern(pattern: string, variables: VariableValues): string;
+declare function checkPattern(
+  pattern: string,
+  variables: VariableValues
+): string;
 
 declare function limit(number: number): BinaryNumber;
-*/
