@@ -1,12 +1,13 @@
-import { BinaryNumber, VariableValues } from "../../typings";
-import not from "../gates/not";
+import { VariableValues } from "../../typings";
+import negateBrackets from "./negateBrackets";
 
 export default (pattern: string, variables: VariableValues): string => {
   pattern = pattern
     .replace(/ /g, "")
-    .replace(/\(\)/g, "")
     .replace(/[{[]/g, "(")
     .replace(/[}\]]/g, ")")
+    .replace(/!\(\)/g, "")
+    .replace(/\(\)/g, "")
     .replace(/\)!/g, ")*!")
     .replace(/\*+/g, "*")
     .replace(/-+/g, "-")
@@ -14,7 +15,7 @@ export default (pattern: string, variables: VariableValues): string => {
     .toLowerCase();
 
   const letters = "abcdefghijklmnopqrstuvwxyz";
-  const brackets = "()[]{}";
+  const brackets = "()";
   const operators = "!+*";
 
   const validChars = letters.concat(brackets, operators).split("");
@@ -32,25 +33,18 @@ export default (pattern: string, variables: VariableValues): string => {
 
   pattern = pattern.replace(/\)\(/g, ")*(");
 
-  pattern.split("").forEach((item) => {
+  pattern.split("").forEach((item, index, array) => {
     if (letters.split("").includes(item)) {
       let value = variables?.[item] ? +variables?.[item] : 0;
+      if(array[index-1] === "!") value = +!value;
       let regex = new RegExp(item, "g");
       pattern = pattern.replace(regex, String(value));
     }
   });
 
-  let splittedArray = pattern.split("!");
-  for (let i = 1; i < splittedArray.length; i++) {
-    let number = splittedArray[i][0];
-    splittedArray[i] = splittedArray[i].replace(
-      number,
-      String(not(+number as BinaryNumber))
-    );
-  }
-  pattern = splittedArray.join("");
-
   pattern = pattern
+    .replace(/!0/g, "0")
+    .replace(/!1/g, "1")
     .replace(/\)0/g, ")*0")
     .replace(/0\(/g, "0*(")
     .replace(/\)1/g, ")*1")
@@ -76,10 +70,14 @@ export default (pattern: string, variables: VariableValues): string => {
 
   pattern = array
     .join("")
+    .replace(/0!/g, "0*!")
+    .replace(/1!/g, "1*!")
     .replace(/00/g, "0*0")
     .replace(/01/g, "0*1")
     .replace(/10/g, "1*0")
     .replace(/11/g, "1*1");
+
+  while(pattern.match(/!\(/)) pattern = negateBrackets(pattern);
 
   return pattern;
 };
