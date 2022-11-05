@@ -32,13 +32,13 @@ export default (pattern: string) : EveryCase => {
             uniqueLetters.size - binaryNumber.length
         )}${binaryNumber}`.split("");
 
-        let variablesToPass = {}
+        let variablesToPass: VariableValues = {};
         let j = 0;
 
-        values.forEach((item => {
+        values.forEach(item => {
             variablesToPass[[...uniqueLetters.values()][j]] = +item as BinaryNumber;
             j++
-        }))
+        })
 
         uniqueVariables.add(variablesToPass)
     }
