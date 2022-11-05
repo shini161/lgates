@@ -1,5 +1,5 @@
 
-# Logic Gates as Functions + Expressions
+# Logic Gates as Functions & Expressions
 Logic Gates (AND, BUFFER, NAND, NOR, NOT, OR, XNOR, XOR) made available as simple functions and Expressions (Cool feature of this package).
 
 Gates also support both Boolean and number values, here's an example:
