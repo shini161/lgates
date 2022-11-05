@@ -2,7 +2,7 @@ import { VariableValues } from "../../typings";
 import negateBrackets from "./negateBrackets";
 
 export default (pattern: string, variables: VariableValues): string => {
-  pattern = pattern
+  pattern = pattern.toLowerCase()
     .replace(/ /g, "")
     .replace(/[{[]/g, "(")
     .replace(/[}\]]/g, ")")
@@ -11,8 +11,7 @@ export default (pattern: string, variables: VariableValues): string => {
     .replace(/\)!/g, ")*!")
     .replace(/\*+/g, "*")
     .replace(/-+/g, "-")
-    .replace(/!+/, "!")
-    .toLowerCase();
+    .replace(/!+/, "!");
 
   const letters = "abcdefghijklmnopqrstuvwxyz";
   const brackets = "()";
@@ -33,18 +32,17 @@ export default (pattern: string, variables: VariableValues): string => {
 
   pattern = pattern.replace(/\)\(/g, ")*(");
 
-  pattern.split("").forEach((item, index, array) => {
+  pattern.split("").forEach((item) => {
     if (letters.split("").includes(item)) {
       let value = variables?.[item] ? +variables?.[item] : 0;
-      if(array[index-1] === "!") value = +!value;
       let regex = new RegExp(item, "g");
       pattern = pattern.replace(regex, String(value));
     }
   });
 
   pattern = pattern
-    .replace(/!0/g, "0")
-    .replace(/!1/g, "1")
+    .replace(/!0/g, "1")
+    .replace(/!1/g, "0")
     .replace(/\)0/g, ")*0")
     .replace(/0\(/g, "0*(")
     .replace(/\)1/g, ")*1")
@@ -68,8 +66,7 @@ export default (pattern: string, variables: VariableValues): string => {
     }
   }
 
-  pattern = array
-    .join("")
+  pattern = array.join("")
     .replace(/0!/g, "0*!")
     .replace(/1!/g, "1*!")
     .replace(/00/g, "0*0")
