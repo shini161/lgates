@@ -72,7 +72,7 @@ export default (pattern: string, variables: VariableValues): string => {
     .replace(/00/g, "0*0")
     .replace(/01/g, "0*1")
     .replace(/10/g, "1*0")
-    .replace(/11/g, "1*1");
+    .replace(/11/g, "1*1")
 
   while(pattern.match(/!\(/)) pattern = negateBrackets(pattern);
 
