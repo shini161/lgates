@@ -5,12 +5,14 @@ export default (pattern: string): string => {
     let counter = 0;
     let afterNegate = pattern.split(/!\((.*)/s);
     afterNegate.shift();
-
-    for(let i = 0; i < afterNegate.length; i++) {
-        repArr.push(afterNegate[i]);
-        if(afterNegate[i] === "(") counter++;
-        if(afterNegate[i] === ")") counter--;
-        if(!counter) break;
+    let splittedArr = afterNegate.join("").split("")
+    for(let i = 0; i < splittedArr.length; i++) {
+        repArr.push(splittedArr[i]);
+        if(splittedArr[i] === "(") counter++;
+        if(splittedArr[i] === ")") {
+            if(!counter) break;
+            counter--;
+        }
     }
 
     let rep = repArr.join("");
