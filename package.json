@@ -16,7 +16,15 @@
     "gate",
     "gates",
     "logic-gate",
-    "logic-gates"
+    "logic-gates",
+    "and",
+    "buffer",
+    "nand",
+    "nor",
+    "not",
+    "or",
+    "xnor",
+    "xor"
   ],
   "repository": {
     "type": "git",
