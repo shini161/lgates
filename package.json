@@ -2,7 +2,22 @@
   "name": "lgates",
   "version": "1.0.0",
   "description": "logic gates + expressions support library/package",
-  "main": "src/index.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "/dist",
+    "/typings"
+  ],
+  "keywords": [
+    "expression",
+    "expressions",
+    "lgates",
+    "logic",
+    "gate",
+    "gates",
+    "logic-gate",
+    "logic-gates"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/shini161/lgates.git"
