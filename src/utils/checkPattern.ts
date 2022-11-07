@@ -68,11 +68,12 @@ export default (pattern: string, variables: VariableValues): string => {
 
   pattern = array.join("")
     .replace(/0!/g, "0*!")
-    .replace(/1!/g, "1*!")
-    .replace(/00/g, "0*0")
-    .replace(/01/g, "0*1")
-    .replace(/10/g, "1*0")
-    .replace(/11/g, "1*1")
+    .replace(/1!/g, "1*!");
+
+  while(pattern.match(/00/)) pattern = pattern.replace(/00/g, "0*0");
+  while(pattern.match(/01/)) pattern = pattern.replace(/01/g, "0*1");
+  while(pattern.match(/10/)) pattern = pattern.replace(/10/g, "1*0");
+  while(pattern.match(/11/)) pattern = pattern.replace(/11/g, "1*1");
 
   while(pattern.match(/!\(/)) pattern = negateBrackets(pattern);
 
