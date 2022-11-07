@@ -54,9 +54,9 @@ export default (pattern: string, variables: VariableValues): string => {
       binaryNumbers.includes(+array[i]) &&
       binaryNumbers.includes(+array[i + 1])
     ) {
-      if (array[i - 1] !== "(") {
+      if ((array[i - 1] !== "(") && !binaryNumbers.includes(+array[i - 1])) {
         array.splice(i, 0, "(");
-        for (let j = i + 1; j < array.length; j++) {
+        for (let j = i + 1; j <= array.length; j++) {
           if (!binaryNumbers.includes(+array[j])) {
             array.splice(j, 0, ")");
             break;
