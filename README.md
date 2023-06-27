@@ -10,22 +10,22 @@ import lg from "lgates";
 lg.gate.and(true, 1, false);
 // Gates will always return a number
 ```
- It is also possible to import every expression or gate individually:
+It is also possible to import every expression or gate individually:
 ```typescript
-import {gate, exp, and, singleCase} from "lgates";
+import {and, singleCase} from "lgates";
 
 // Gate Examples
-gate.and(true, 0); // 0
 and(true, 0) // 0
 
 // Expression Examples
-exp.singleCase("AB+!B", {a: 1, b: 0}).res // 1
 singleCase("AB+!B", {a:1, b:0}).res // 1
 ```
 
 ## Install
 ```bash
 $ npm install lgates
+$ pnpm install lgates
+$ yarn add lgates
 ```
 
 ## Usage
@@ -36,7 +36,7 @@ import lg from "lgates";
 // Gates
 const and = lg.gate.and(true, 1);
 const buffer = lg.gate.buffer(true);
-const nand = lg.gate(true, 1);
+const nand = lg.gate.nand(true, 1);
 const nor = lg.gate.nor(true, 1);
 const not = lg.gate.not(true);
 const or = lg.gate.or(true, 1);

@@ -1,21 +1,18 @@
-import { SingleCase, VariableValues } from "../../typings";
-import limit from "../utils/limit";
-import checkPattern from "../utils/checkPattern";
-import vm from "../utils/vm";
+import {validatePattern} from "../utils/validatePattern.js";
+import {limit} from "../utils/limit.js";
+import {SingleCaseObj} from "../../typings/index.js";
 
 /**
- *
- * @param pattern
- * the expression to evaluate
- * @param variables
- * an object of variable values
- * @return SingleCase
+ * Expression [SINGLE]
+ * @param {string} pattern Expression
+ * @param {object} args Variables
+ * @returns {SingleCaseObj} Object
  */
-export default (pattern: string, variables?: VariableValues): SingleCase => {
-  pattern = checkPattern(pattern, variables);
+export function singleCase(pattern: string, args?: { [key: string]: number }): SingleCaseObj {
+	pattern = validatePattern(pattern, args);
 
-  return {
-    exp: pattern,
-    res: limit(vm.run(pattern)),
-  };
-};
+	return {
+		exp: pattern,
+		res: limit(eval(pattern))
+	}
+}

@@ -1,62 +1,49 @@
-import {BinaryNumber, EveryCase, EveryCaseReturnData, VariableValues} from "../../typings";
-import checkPattern from "../utils/checkPattern";
-import limit from "../utils/limit";
-import vm from "../utils/vm";
+import {limit} from "../utils/limit.js";
+import {validatePattern} from "../utils/validatePattern.js";
+import {EveryCaseObj} from "../../typings/index.js";
 
 /**
- *
- * @param pattern
- * the expression that will be evaluated
- * @return EveryCase
+ * Expression [EVERY/ALL]
+ * @param {string} pattern Expression
+ * @returns {EveryCaseObj} Object
  */
-export default (pattern: string) : EveryCase => {
-    pattern = pattern.toLowerCase();
+export function everyCase(pattern: string): EveryCaseObj {
+	const LETTERS = "abcdefghijklmnopqrstuvwxyz";
+	const obj: EveryCaseObj = {
+		exp: [],
+		res: [],
+		data: []
+	};
+	const uniqueLetters: Set<string> = new Set(
+		pattern.split("").filter(item => LETTERS.includes(item))
+	);
+	const uniqueVariables: Set<{ [key: string]: number }> = new Set();
+	const numberOfRuns = 2 ** uniqueLetters.size;
 
-    const letters = "abcdefghijklmnopqrstuvwxyz";
+	for (let i = 0; i < numberOfRuns; i++) {
+		const binary = i.toString(2);
+		const values = `${'0'.repeat(
+			uniqueLetters.size - binary.length
+		)}${binary}`.split("");
 
-    let exp: string[] = [];
-    let res: BinaryNumber[] = [];
-    let data : EveryCaseReturnData[] = [];
+		uniqueVariables.add(values.reduce((acc, item, index) => {
+			acc[[...uniqueLetters.values()][index] as string] = +item;
+			return acc;
+		}, {} as { [key: string]: number }));
+	}
 
-    const uniqueLetters: Set<string> = new Set();
-    const uniqueVariables: Set<VariableValues> = new Set();
+	uniqueVariables.forEach(item => {
+		let exp = validatePattern(pattern, item);
+		obj.res.push(limit(eval(exp)));
+		obj.exp.push(exp);
+	});
 
-    pattern.split("").forEach(item => {
-        if(letters.split("").includes(item)) uniqueLetters.add(item);
-    })
+	for (let i = 0; i < numberOfRuns; i++) {
+		obj.data.push(Object.assign(
+			[...uniqueVariables.values()][i] as never,
+			{res: obj.res[i] as number}
+		));
+	}
 
-    const numberOfRuns = 2 ** uniqueLetters.size;
-    for(let i = 0; i < numberOfRuns; i++) {
-        const binaryNumber = i.toString(2);
-        const values = `${'0'.repeat(
-            uniqueLetters.size - binaryNumber.length
-        )}${binaryNumber}`.split("");
-
-        let variablesToPass: VariableValues = {};
-        let j = 0;
-
-        values.forEach(item => {
-            variablesToPass[[...uniqueLetters.values()][j]] = +item as BinaryNumber;
-            j++
-        })
-
-        uniqueVariables.add(variablesToPass)
-    }
-
-    [...uniqueVariables.values()].forEach(item => {
-
-        let expression = checkPattern(pattern, item);
-
-        res.push(limit(vm.run(expression)));
-        exp.push(expression);
-    })
-
-    for(let i = 0; i<numberOfRuns; i++) {
-        let obj = [...uniqueVariables.values()][i]
-        obj.res = res[i]
-
-        data.push(obj as EveryCaseReturnData)
-    }
-
-    return {res, exp, data}
+	return obj;
 }

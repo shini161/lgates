@@ -1,13 +1,25 @@
 {
   "name": "lgates",
-  "version": "1.1.6",
-  "description": "logic gates + expressions support library/package",
+  "version": "1.2.0",
+  "author": "shini161",
+  "description": "Logic Gates & Expressions Support Library",
+  "license": "GPL-3.0",
   "main": "dist/index.js",
+  "type": "module",
   "types": "dist/index.d.ts",
   "files": [
-    "/dist",
-    "/typings"
+    "./dist",
+    "./typings",
+    "./test"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shini161/lgates.git"
+  },
+  "bugs": {
+    "url": "https://github.com/shini161/lgates/issues"
+  },
+  "homepage": "https://github.com/shini161/lgates#readme",
   "keywords": [
     "expression",
     "expressions",
@@ -26,21 +38,7 @@
     "xnor",
     "xor"
   ],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/shini161/lgates.git"
-  },
-  "author": "shini161",
-  "license": "GPL-3.0",
-  "bugs": {
-    "url": "https://github.com/shini161/lgates/issues"
-  },
-  "homepage": "https://github.com/shini161/lgates#readme",
-  "dependencies": {
-    "tslib": "^2.4.1",
-    "vm2": "^3.9.11"
-  },
   "devDependencies": {
-    "typescript": "^4.8.4"
+    "typescript": "^5.0.4"
   }
 }

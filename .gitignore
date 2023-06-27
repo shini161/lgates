@@ -1,6 +1,12 @@
+# node
+node_modules
+
+# environment
 .idea
+.vscode
 
-node_modules/
-dist/
+# build
+dist
 
+pnpm-lock.yaml
 package-lock.json
